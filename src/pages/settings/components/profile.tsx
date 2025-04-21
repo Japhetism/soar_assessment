@@ -90,7 +90,7 @@ const Profile: React.FC = () => {
           <img
             loading="lazy"
             src={userImage}
-            alt="User profile picture"
+            alt="User profile"
             className="w-[90px] h-[90px] rounded-full"
           />
           <button
