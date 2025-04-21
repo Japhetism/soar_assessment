@@ -4,13 +4,6 @@ import { ITab, ITabSelector } from "../../interfaces";
 const TabSelector: React.FC<ITabSelector> = ({ tabs, initialRoute }) => {
   const [activeTab, setActiveTab] = useState<string>(initialRoute);
 
-  const renderContent = () => {
-    if (activeTab) {
-      return tabs.find((tab: ITab) => tab.route === activeTab)?.content;
-    }
-    return null;
-  };
-
   return (
     <div className="w-full">
       <div
@@ -24,6 +17,7 @@ const TabSelector: React.FC<ITabSelector> = ({ tabs, initialRoute }) => {
             role="tab"
             aria-selected={activeTab === tab.route}
             aria-controls={`tabpanel-${tab.route}`}
+            aria-labelledby={`tab-${tab.route}`}
             key={tab.route}
             className={`px-4 sm:px-6 py-2 -mb-px mr-2 sm:mr-4 text-sm sm:text-base font-inter font-medium transition-colors duration-200 ${
               activeTab === tab.route
@@ -38,7 +32,17 @@ const TabSelector: React.FC<ITabSelector> = ({ tabs, initialRoute }) => {
       </div>
 
       <div className="p-4">
-        {renderContent()}
+        {tabs.map((tab: ITab) => (
+          <div
+            id={`tabpanel-${tab.route}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${tab.route}`}
+            hidden={activeTab !== tab.route}
+            key={`tabpanel-${tab.route}`}
+          >
+            {tab.route === activeTab && tab.content}
+          </div>
+        ))}
       </div>
     </div>
   );

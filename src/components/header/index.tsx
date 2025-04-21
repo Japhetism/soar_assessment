@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import UserImage from '../../assets/images/user.png';
+import UserImage from '../../assets/images/user.webp';
 import BELL_SVG from '../../assets/icons/bell';
 import COG_SVG from '../../assets/icons/cog';
 import SearchInput from '../searchInput';
@@ -17,7 +17,7 @@ const Header = () => {
   }
 
   return (
-    <header className="bg-[#FFF] text-white border-b-[1px]" role="app-header">
+    <header className="bg-[#FFF] text-white border-b-[1px]" role="banner">
       <div className="flex justify-between items-center p-4 px-10">
         <div className="w-full md:w-auto flex justify-center md:justify-start lg:ml-[0px] ml-[20px]" aria-label="Page Title">
           <span className="text-[#343C6A] lg:text-[28px] text-[20px] font-semibold font-inter">{getPathname()}</span>
@@ -51,7 +51,12 @@ const Header = () => {
             </div>
           </div>
           
-          <img src={UserImage} alt="User Profile" className="w-[60px] h-[60px] rounded-full" />
+          <img
+            loading="lazy"
+            src={UserImage}
+            alt="User Profile"
+            className="w-[60px] h-[60px] rounded-full"
+          />
         </div>
       </div>
       <div className="w-full px-4 pb-4 lg:hidden">

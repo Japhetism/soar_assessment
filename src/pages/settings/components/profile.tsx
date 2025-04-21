@@ -5,7 +5,7 @@ import Notification from "../../../components/Notification";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getProfile, updateProfile } from "../../../redux/slices/profile/profileThunks";
 import EDIT_SVG from "../../../assets/icons/edit";
-import UserImage from "../../../assets/images/user.png";
+import UserImage from "../../../assets/images/user.webp";
 import { IProfile } from "../../../interfaces";
 import { profileSchema } from "../../../schemas";
 import { defaultProfileValues } from "../../../constants";
@@ -87,7 +87,12 @@ const Profile: React.FC = () => {
     <>
       <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-20 items-center lg:items-start">
         <div className="relative flex-shrink-0 mb-6 lg:mb-0 flex justify-center">
-          <img src={userImage} alt="User profile picture" className="w-[90px] h-[90px] rounded-full" />
+          <img
+            loading="lazy"
+            src={userImage}
+            alt="User profile picture"
+            className="w-[90px] h-[90px] rounded-full"
+          />
           <button
             type="button"
             onClick={() => handleSelectImage()}

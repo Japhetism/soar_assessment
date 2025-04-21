@@ -18,7 +18,7 @@ const SideMenu: React.FC = () => {
       <div
         role="navigation"
         aria-label="Main Navigation"
-        className="lg:w-[250px] border-[1px] border-[#E6EFF5] w-0 h-screen bg-white shadow-lg flex flex-col justify-start items-center transition-all duration-300 ease-in-out sm:hidden lg:flex"
+        className="lg:w-[250px] border-[1px] border-[#E6EFF5] w-0 h-screen bg-[#FFF] shadow-lg flex flex-col justify-start items-center transition-all duration-300 ease-in-out sm:hidden lg:flex"
       >
         <div className="flex items-center justify-between w-full p-6 text-2xl font-bold text-black mb-2">
           <div className="flex items-center space-x-2">
