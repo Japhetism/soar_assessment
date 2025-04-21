@@ -13,9 +13,17 @@ const TabSelector: React.FC<ITabSelector> = ({ tabs, initialRoute }) => {
 
   return (
     <div className="w-full">
-      <div className="flex border-b border-[#F4F5F7] mb-6">
+      <div
+        role="tablist"
+        aria-label="Tab Navigation"
+        className="flex border-b border-[#F4F5F7] mb-6"
+      >
         {tabs.map((tab: ITab) => (
           <button
+            id={`tab-${tab.route}`}
+            role="tab"
+            aria-selected={activeTab === tab.route}
+            aria-controls={`tabpanel-${tab.route}`}
             key={tab.route}
             className={`px-4 sm:px-6 py-2 -mb-px mr-2 sm:mr-4 text-sm sm:text-base font-inter font-medium transition-colors duration-200 ${
               activeTab === tab.route

@@ -22,12 +22,13 @@ export const MenuItem: React.FC<IMenuItem> = ({
     <Link
       to={route}
       onClick={() => closeMenu(false)}
+      aria-current={isActive ? "page" : undefined}
       className={`relative flex items-center py-3 px-8 hover:bg-gray-200 cursor-pointer ${textColor}`}
     >
-      <span className={`mr-4 ${textColor}`}>
+      <span className="mr-4">
         <Icon color={iconColor} />
       </span>
-      <span className={`text-lg font-medium font-inter ${textColor}`}>{label}</span>
+      <span className="text-lg font-medium font-inter">{label}</span>
     </Link>
   );
 };

@@ -10,12 +10,12 @@ const tabs = [
   {
     title: "Preferences",
     route: "preferences",
-    content: <div>This page under construction</div>
+    content: <div className="text-gray-500">🔧 This section is coming soon.</div>,
   },
   {
     title: "Security",
     route: "security",
-    content: <div>This page under construction</div>
+    content: <div className="text-gray-500">🔧 This section is coming soon.</div>,
   }
 ]
 

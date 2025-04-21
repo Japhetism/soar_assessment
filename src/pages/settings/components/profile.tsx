@@ -87,10 +87,15 @@ const Profile: React.FC = () => {
     <>
       <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-20 items-center lg:items-start">
         <div className="relative flex-shrink-0 mb-6 lg:mb-0 flex justify-center">
-          <img src={userImage} alt="" className="w-[90px] h-[90px] rounded-full" />
-          <div onClick={() => handleSelectImage()} className="absolute bottom-0 right-0 flex justify-center items-center bg-[#232323] w-[30px] h-[30px] rounded-full">
+          <img src={userImage} alt="User profile picture" className="w-[90px] h-[90px] rounded-full" />
+          <button
+            type="button"
+            onClick={() => handleSelectImage()}
+            aria-label="Change profile picture"
+            className="absolute bottom-0 right-0 flex justify-center items-center bg-[#232323] w-[30px] h-[30px] rounded-full"
+          >
             <EDIT_SVG />
-          </div>
+          </button>
         </div>
 
         <input
@@ -214,6 +219,7 @@ const Profile: React.FC = () => {
 
       <div className="flex items-end mt-10">
         <button
+          type="submit"
           onClick={(e) => handleUpdateProfile(e)}
           className="bg-[#232323] w-[190px] h-[50px] text-[#FFFFFF] text-lg rounded-[15px] ml-auto hover:bg-[#396AFF]"
         >

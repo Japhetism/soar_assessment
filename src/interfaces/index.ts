@@ -35,6 +35,7 @@ export interface IInput {
   type?: string;
   label?: string;
   value?: string;
+  required?: boolean;
   error?: string | null | undefined;
   autoComplete?: "yes" | "no";
   onChange: (value: string) => void;

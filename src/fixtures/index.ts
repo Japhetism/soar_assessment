@@ -4,7 +4,7 @@ export const profileDataValues: IProfile = {
   name: "James Doe",
   username: "JJD12334",
   email: "jamesdoe@gmail.com",
-  password: "dhdhhdhdh",
+  password: "dhdhhdhdh@1236AHGD_",
   dateOfBirth: "01/01/1989",
   presentAddress: "Victoria, Island, Lagos",
   permanentAddress: "Victoria Island, Lagos",
