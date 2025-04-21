@@ -13,6 +13,7 @@ export interface IProfileState extends IAsyncData<IProfile | null> {}
 
 export interface IDashboardState {
   cards: IAsyncData<ICard[]>;
+  recentTransactions: IAsyncData<IRecentTransactions[]>;
 }
 
 export interface INotification {
@@ -76,18 +77,7 @@ export interface IRecentTransactions {
 }
 
 export interface IRecentTransactionCard {
-  title: string;
   transactions: IRecentTransactions[] | null;
-  isLoading: boolean;
-  error: string | null;
-}
-
-export interface IRecentTransactions {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | null;
-  narration: string;
-  amount: number;
-  date: string;
-  bgColor: string;
 }
 
 export type ICardType = "standard" | "premium"; 
@@ -107,3 +97,11 @@ export interface ICardListItem {
   icon: React.ElementType | null;
   bgColor: string;
 }
+
+// export interface IRecentTransactions {
+//   icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | null;
+//   narration: string;
+//   amount: number;
+//   date: string;
+//   bgColor: string;
+// }

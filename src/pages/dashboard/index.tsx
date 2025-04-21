@@ -1,18 +1,22 @@
 import HeaderText from "./components/headerText";
+import RecentTransactions from "./components/recentTransactions";
 import UserCards from "./components/userCards";
 
 const Dashboard: React.FC = () => {
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-        <div className="flex w-full lg:w-8/12 gap-4 lg:gap-10 overflow-x-auto lg:overflow-x-visible">
+      <div className="flex flex-col lg:flex-row items-start justify-between gap-10">
+        <div
+          className="flex w-full lg:w-8/12 gap-4 lg:gap-10 overflow-x-auto lg:overflow-x-visible"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
           <UserCards />
         </div>
         <div className="w-full lg:w-4/12">
-          <HeaderText text="Recent Transactions" />
-          <div className="bg-[#fff] h-[250px] rounded-lg p-4">
-            C
-          </div>
+          <RecentTransactions />
         </div>
       </div>
 

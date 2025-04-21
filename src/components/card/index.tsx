@@ -18,7 +18,10 @@ const Card: React.FC<ICard> = ({
   const imageValue = type?.toLowerCase() === "premium" ? CardChip : BlackCardChip;
 
   return (
-    <div className="w-full">
+    <section
+      className="w-full"
+      aria-label={`Credit card ending in ${number.slice(-4)}`}
+    >
       <div className={`${extraClasses} rounded-[25px] shadow-lg`}>
         <div className="p-6 relative">
           <div className="flex justify-between items-center mb-5">
@@ -26,7 +29,13 @@ const Card: React.FC<ICard> = ({
               <p className={`${headerClasses} text-xs font-normal`}>Balance</p>
               <p className={`${valueClasses} text-xl font-semibold`}>${balance.toLocaleString()}</p>
             </div>
-            <img src={imageValue} alt="" className="w-[34.77px] h-[34.77px]" />
+            <img
+              src={imageValue}
+              alt="Card chip"
+              loading="lazy"
+              role="presentation"
+              className="w-[34.77px] h-[34.77px]"
+            />
           </div>
           <div className="flex flex-start space-x-12 text-gray-300">
             <div>
@@ -40,11 +49,18 @@ const Card: React.FC<ICard> = ({
           </div>
         </div>
         <div className={`flex flex-row mb-4 justify-between ${extraClasses} ${type?.toLowerCase() !== "premium" ? "border-t-[1px] border-gray-100" : ""} p-6 rounded-b-[25px]`}>
-          <p className={`${valueClasses} text-[22px] font-semibold`}>{number}</p>
-          <CARD_ICON_SVG color="#9199AF" />
+          <p
+            className={`${valueClasses} text-[22px] font-semibold`}
+            aria-label={`Card number ending in ${number.slice(-4)}`}
+          >
+            {number}
+          </p>
+          <div aria-hidden="true">
+            <CARD_ICON_SVG color="#9199AF" />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

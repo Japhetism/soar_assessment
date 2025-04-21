@@ -1,4 +1,4 @@
-import { ICard, IProfile } from "../interfaces";
+import { ICard, IProfile, IRecentTransactions } from "../interfaces";
 
 export const profileDataValues: IProfile = {
   name: "James Doe",
@@ -27,5 +27,26 @@ export const userCards: ICard[] = [
     expiryDate: "12/22",
     number: "3778 **** **** 1234",
     type: "standard"
+  }
+]
+
+export const recentTransactions: IRecentTransactions[] = [
+  {
+    narration: "Deposit from my card",
+    amount: -850,
+    date: "01/28/2021",
+    type: "card"
+  },
+  {
+    narration: "Deposit PayPal",
+    amount: 2500,
+    date: "01/25/2021",
+    type: "paypal"
+  },
+  {
+    narration: "Jemi Wilson",
+    amount: 5400,
+    date: "01/21/2021",
+    type: "self"
   }
 ]

@@ -25,4 +25,9 @@ export const initialDashboardState: IDashboardState = {
     loading: false,
     error: null,
   },
+  recentTransactions: {
+    data: [],
+    loading: false,
+    error: null,
+  }
 };

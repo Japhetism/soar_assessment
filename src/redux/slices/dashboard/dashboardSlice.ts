@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getUserCards } from "./dashboardThunks";
+import { getRecentTransactions, getUserCards } from "./dashboardThunks";
 import { initialDashboardState } from "../../../constants";
-import { ICard } from "../../../interfaces";
+import { ICard, IRecentTransactions } from "../../../interfaces";
 
 
 const dashboardSlice = createSlice({
@@ -21,6 +21,18 @@ const dashboardSlice = createSlice({
       .addCase(getUserCards.rejected, (state, action) => {
         state.cards.loading = false;
         state.cards.error = action.error.message ?? "Failed to fetch user card details";
+      })
+      .addCase(getRecentTransactions.pending, (state) => {
+        state.recentTransactions.loading = true;
+        state.recentTransactions.error = null;
+      })
+      .addCase(getRecentTransactions.fulfilled, (state, action: PayloadAction<IRecentTransactions[]>) => {
+        state.recentTransactions.loading = false;
+        state.recentTransactions.data = action.payload;
+      })
+      .addCase(getRecentTransactions.rejected, (state, action) => {
+        state.recentTransactions.loading = false;
+        state.recentTransactions.error = action.error.message ?? "Failed to fetch recent transaction";
       })
   },
 });

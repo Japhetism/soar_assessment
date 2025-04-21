@@ -31,8 +31,6 @@ const UserCards = () => {
     }
   }, [error]);
 
-  console.log("user cards are ", data);
-
   if (loading) {
     return <Loader />
   }
@@ -41,7 +39,7 @@ const UserCards = () => {
     <>
       {errorMessage && <Notification message={errorMessage} isError />}
       {userCards?.map((card, index) => (
-        <div className="w-[320px] lg:w-full shrink-0 lg:shrink"  key={`usercard-${index}`}>
+        <div className="w-[320px] lg:w-full shrink-0 lg:shrink" key={`usercard-${index}`}>
           <HeaderText
             fontSize={card?.type?.toLowerCase() === "premium" ? 22 : 17}
             bottom={card?.type?.toLowerCase() === "premium" ? 5 : 7}

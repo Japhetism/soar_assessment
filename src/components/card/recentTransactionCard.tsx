@@ -1,6 +1,4 @@
 import React from "react";
-import Loader from "../loader";
-import Notification from "../Notification";
 import { IRecentTransactions, IRecentTransactionCard, ICardListItem } from "../../interfaces";
 import { formatDate, getRecentTransactionBgColor, getRecentTransactionIcon } from "../../utils/helper";
 
@@ -14,7 +12,7 @@ const CardListItem: React.FC<ICardListItem> = (
   }
 ) => {
   return (
-    <div className="flex flex-row items-center justify-between mb-4">
+    <div className="flex flex-row items-center justify-between mb-2">
       <div className={`flex items-center justify-center ${bgColor} w-[55px] h-[55px] rounded-full`}>
         {Icon && <Icon />}
       </div>
@@ -33,19 +31,8 @@ const CardListItem: React.FC<ICardListItem> = (
   );
 };
 
-const RecentTransactionCard: React.FC<IRecentTransactionCard> = ({ title, transactions, isLoading, error }) => {
-  if (isLoading) {
-    return (
-      <Loader />
-    );
-  }
-
-  if (error) {
-    return (
-      <Notification message={error} isError={true} />
-    );
-  }
-
+const RecentTransactionCard: React.FC<IRecentTransactionCard> = ({ transactions }) => {
+  
   if (!transactions || transactions.length === 0) {
     return (
       <div className="w-full bg-[#FFFFFF] rounded-[25px] px-6 py-4" style={{ textAlign: 'center', color: 'gray', padding: '20px' }}>
@@ -55,23 +42,17 @@ const RecentTransactionCard: React.FC<IRecentTransactionCard> = ({ title, transa
   }
 
   return (
-    <div>
-      <div className={`mb-6`}>
-        <span className={`text-[#343C6A] text-[22px] text-right ml-auto font-inter font-semibold`}>{title}</span>
-      </div>
-
-      <div className="w-full bg-[#FFFFFF] rounded-[25px] px-6 py-4">
-        {transactions.map((transaction: IRecentTransactions, index: number) => (
-          <CardListItem
-            key={index}
-            narration={transaction.narration}
-            amount={transaction.amount}
-            date={transaction.date}
-            icon={getRecentTransactionIcon(transaction.type)}
-            bgColor={getRecentTransactionBgColor(transaction.type)}
-          />
-        ))}
-      </div>
+    <div className="w-full bg-[#FFFFFF] rounded-[25px] py-3 px-4 flex flex-col gap-2.5">
+      {transactions.map((transaction: IRecentTransactions, index: number) => (
+        <CardListItem
+          key={index}
+          narration={transaction.narration}
+          amount={transaction.amount}
+          date={transaction.date}
+          icon={getRecentTransactionIcon(transaction.type)}
+          bgColor={getRecentTransactionBgColor(transaction.type)}
+        />
+      ))}
     </div>
   );
 };
