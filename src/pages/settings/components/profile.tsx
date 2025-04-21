@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Input from "../../../components/input";
 import Loader from "../../../components/loader";
 import Notification from "../../../components/Notification";
@@ -15,10 +15,13 @@ const Profile: React.FC = () => {
   const dispatch = useAppDispatch();
   const { data: profile, loading, error } = useAppSelector((state) => state.profile); 
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const [formData, setFormData] = useState<IProfile>(defaultProfileValues);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [userImage, setUserImage] = useState<string>(UserImage);
 
   useEffect(() => {
     dispatch(getProfile());
@@ -64,6 +67,18 @@ const Profile: React.FC = () => {
     }
   };
 
+  const handleSelectImage = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setUserImage(imageUrl);
+    }
+  };
+
   if (loading) {
     return <Loader />
   }
@@ -72,11 +87,19 @@ const Profile: React.FC = () => {
     <>
       <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-20 items-center lg:items-start">
         <div className="relative flex-shrink-0 mb-6 lg:mb-0 flex justify-center">
-          <img src={UserImage} alt="" className="w-[90px] h-[90px] rounded-full" />
-          <div className="absolute bottom-0 right-0 flex justify-center items-center bg-[#232323] w-[30px] h-[30px] rounded-full">
+          <img src={userImage} alt="" className="w-[90px] h-[90px] rounded-full" />
+          <div onClick={() => handleSelectImage()} className="absolute bottom-0 right-0 flex justify-center items-center bg-[#232323] w-[30px] h-[30px] rounded-full">
             <EDIT_SVG />
           </div>
         </div>
+
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={handleImageChange}
+          style={{ display: "none" }}
+        />
 
         <div className="flex flex-col space-y-6 w-full">
           {errorMessage && <Notification message={errorMessage} isError />}
