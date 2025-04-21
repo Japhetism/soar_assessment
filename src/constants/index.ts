@@ -1,4 +1,4 @@
-import { IProfile } from "../interfaces";
+import { IProfile, IProfileState } from "../interfaces";
 
 export const defaultProfileValues: IProfile = {
   name: "",
@@ -12,3 +12,9 @@ export const defaultProfileValues: IProfile = {
   country: "",
   postalCode: "",
 }
+
+export const initialState: IProfileState = {
+  data: null,
+  loading: false,
+  error: null,
+};

@@ -1,19 +1,17 @@
+import { z } from "zod";
+import { profileSchema } from "../schemas";
 
-export interface IProfile {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  dateOfBirth: string;
-  presentAddress: string;
-  permanentAddress: string;
-  city: string;
-  postalCode: string;
-  country: string;
+export type IProfile = z.infer<typeof profileSchema>;
+
+export interface IProfileState {
+  data: IProfile | null;
+  loading: boolean;
+  error: string | null;
 }
 
-export interface IError {
-  error: string
+export interface INotification {
+  message: string
+  isError?: boolean;
 }
 
 export interface ITab {
@@ -37,6 +35,7 @@ export interface IInput {
   type?: string;
   label?: string;
   value?: string;
+  error?: string | null | undefined;
   autoComplete?: "yes" | "no";
   onChange: (value: string) => void;
 }

@@ -1,15 +1,72 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../../components/input";
 import Loader from "../../../components/loader";
-import ErrorComponent from "../../../components/Error";
+import Notification from "../../../components/Notification";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { getProfile, updateProfile } from "../../../redux/slices/profile/profileThunks";
 import EDIT_SVG from "../../../assets/icons/edit";
 import UserImage from "../../../assets/images/user.png";
 import { IProfile } from "../../../interfaces";
+import { profileSchema } from "../../../schemas";
 import { defaultProfileValues } from "../../../constants";
 
 const Profile: React.FC = () => {
 
+  const dispatch = useAppDispatch();
+  const { data: profile, loading, error } = useAppSelector((state) => state.profile); 
+
   const [formData, setFormData] = useState<IProfile>(defaultProfileValues);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (profile) {
+      setFormData(profile);
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error);
+    }
+  }, [error]);
+
+  const handleUpdateProfile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormErrors({});
+
+    const result = profileSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0]; 
+        if (typeof field === "string") {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setFormErrors(fieldErrors);
+      return;
+    }
+
+    try {
+      await dispatch(updateProfile(formData)).unwrap();
+      setSuccessMessage("Profile updated successfully ✅");
+      setTimeout(() => setSuccessMessage(""), 3000);
+    } catch (err) {
+      console.error("Update failed", err);
+      setErrorMessage(`Update profile failed ${err}`);
+    }
+  };
+
+  if (loading) {
+    return <Loader />
+  }
 
   return (
     <>
@@ -22,12 +79,15 @@ const Profile: React.FC = () => {
         </div>
 
         <div className="flex flex-col space-y-6 w-full">
+          {errorMessage && <Notification message={errorMessage} isError />}
+          {successMessage && <Notification message={successMessage} />}
           <div className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 w-full">
             <div className="flex-1">
               <Input
                 label="Your Name"
                 placeholder="Your Name"
                 value={formData?.name}
+                error={formErrors?.name}
                 onChange={(e) => setFormData({ ...formData, name: e } as IProfile)}
               />
             </div>
@@ -36,6 +96,7 @@ const Profile: React.FC = () => {
                 label="User Name"
                 placeholder="User Name"
                 value={formData?.username}
+                error={formErrors?.username}
                 onChange={(e) => setFormData({ ...formData, username: e } as IProfile)}
               />
             </div>
@@ -47,6 +108,7 @@ const Profile: React.FC = () => {
                 label="Email"
                 placeholder="Email"
                 value={formData?.email}
+                error={formErrors?.email}
                 onChange={(e) => setFormData({ ...formData, email: e } as IProfile)}
               />
             </div>
@@ -56,6 +118,7 @@ const Profile: React.FC = () => {
                 label="Password"
                 placeholder="Password"
                 value={formData?.password}
+                error={formErrors?.password}
                 onChange={(e) => setFormData({ ...formData, password: e } as IProfile)}
               />
             </div>
@@ -67,6 +130,7 @@ const Profile: React.FC = () => {
                 label="Date of Birth"
                 placeholder="Date of Birth"
                 value={formData?.dateOfBirth}
+                error={formErrors?.dateOfBirth}
                 onChange={(e) => setFormData({ ...formData, dateOfBirth: e } as IProfile)}
               />
             </div>
@@ -75,6 +139,7 @@ const Profile: React.FC = () => {
                 label="Present Address"
                 placeholder="Present Address"
                 value={formData?.presentAddress}
+                error={formErrors?.presentAddress}
                 onChange={(e) => setFormData({ ...formData, presentAddress: e } as IProfile)}
               />
             </div>
@@ -86,6 +151,7 @@ const Profile: React.FC = () => {
                 label="Permanent Address"
                 placeholder="Permanent Address"
                 value={formData?.permanentAddress}
+                error={formErrors?.permanentAddress}
                 onChange={(e) => setFormData({ ...formData, permanentAddress: e } as IProfile)}
               />
             </div>
@@ -94,6 +160,7 @@ const Profile: React.FC = () => {
                 label="City"
                 placeholder="City"
                 value={formData?.city}
+                error={formErrors?.city}
                 onChange={(e) => setFormData({ ...formData, city: e } as IProfile)}
               />
             </div>
@@ -105,6 +172,7 @@ const Profile: React.FC = () => {
                 label="Postal Code"
                 placeholder="Postal Code"
                 value={formData?.postalCode}
+                error={formErrors?.postalCode}
                 onChange={(e) => setFormData({ ...formData, postalCode: e } as IProfile)}
               />
             </div>
@@ -113,6 +181,7 @@ const Profile: React.FC = () => {
                 label="Country"
                 placeholder="Country"
                 value={formData?.country}
+                error={formErrors?.country}
                 onChange={(e) => setFormData({ ...formData, country: e } as IProfile)}
               />
             </div>
@@ -121,7 +190,10 @@ const Profile: React.FC = () => {
       </div>
 
       <div className="flex items-end mt-10">
-        <button className="bg-[#232323] w-[190px] h-[50px] text-[#FFFFFF] text-lg rounded-[15px] ml-auto hover:bg-[#396AFF]">
+        <button
+          onClick={(e) => handleUpdateProfile(e)}
+          className="bg-[#232323] w-[190px] h-[50px] text-[#FFFFFF] text-lg rounded-[15px] ml-auto hover:bg-[#396AFF]"
+        >
           Save
         </button>
       </div>

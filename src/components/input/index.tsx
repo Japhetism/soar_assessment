@@ -7,6 +7,7 @@ const Input: React.FC<IInput> = ({
   label = "",
   type = "text",
   autoComplete = "no",
+  error,
   onChange
 }) => {
   
@@ -22,6 +23,7 @@ const Input: React.FC<IInput> = ({
         onChange={(e) => onChange(e.target.value)}
         className="w-full border rounded-[15px] h-[50px] p-2 px-4 border-[#DFEAF2] text-[#718EBF] text-[15px] font-inter font-medium placeholder-[#718EBF] focus:outline-none focus:ring-2 focus:ring-[#718EBF]"
       />
+      {error && <span className="text-red-500">{error}</span>}
     </div>
   );
 };
