@@ -1,4 +1,4 @@
-import { IProfile, IProfileState } from "../interfaces";
+import { IDashboardState, IProfile, IProfileState } from "../interfaces";
 
 export const defaultProfileValues: IProfile = {
   name: "",
@@ -13,8 +13,16 @@ export const defaultProfileValues: IProfile = {
   postalCode: "",
 }
 
-export const initialState: IProfileState = {
+export const initialProfileState: IProfileState = {
   data: null,
   loading: false,
   error: null,
+};
+
+export const initialDashboardState: IDashboardState = {
+  cards: {
+    data: [],
+    loading: false,
+    error: null,
+  },
 };

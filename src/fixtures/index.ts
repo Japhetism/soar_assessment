@@ -1,4 +1,4 @@
-import { IProfile } from "../interfaces";
+import { ICard, IProfile } from "../interfaces";
 
 export const profileDataValues: IProfile = {
   name: "James Doe",
@@ -12,3 +12,20 @@ export const profileDataValues: IProfile = {
   postalCode: "1101010",
   country: "Nigeria",
 };
+
+export const userCards: ICard[] = [
+  {
+    balance: 5756,
+    name: "Eddy Cusuma",
+    expiryDate: "12/22",
+    number: "3778 **** **** 1234",
+    type: "premium",
+  },
+  {
+    balance: 5756,
+    name: "Eddy Cusuma",
+    expiryDate: "12/22",
+    number: "3778 **** **** 1234",
+    type: "standard"
+  }
+]

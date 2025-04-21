@@ -3,14 +3,20 @@ import { profileSchema } from "../schemas";
 
 export type IProfile = z.infer<typeof profileSchema>;
 
-export interface IProfileState {
-  data: IProfile | null;
+export interface IAsyncData<T> {
+  data: T;
   loading: boolean;
   error: string | null;
 }
 
+export interface IProfileState extends IAsyncData<IProfile | null> {}
+
+export interface IDashboardState {
+  cards: IAsyncData<ICard[]>;
+}
+
 export interface INotification {
-  message: string
+  message: string;
   isError?: boolean;
 }
 
@@ -46,7 +52,7 @@ export interface ILayout {
 }
 
 export interface ILoader {
-  count?: number
+  count?: number;
 }
 
 export interface IMenuItem {
@@ -60,4 +66,44 @@ export interface IMenu {
   label: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   route: string;
+}
+
+export interface IRecentTransactions {
+  narration: string;
+  amount: number;
+  date: string;
+  type: string;
+}
+
+export interface IRecentTransactionCard {
+  title: string;
+  transactions: IRecentTransactions[] | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export interface IRecentTransactions {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | null;
+  narration: string;
+  amount: number;
+  date: string;
+  bgColor: string;
+}
+
+export type ICardType = "standard" | "premium"; 
+
+export interface ICard {
+  balance: number;
+  name: string;
+  expiryDate: string;
+  number: string;
+  type: ICardType;
+}
+
+export interface ICardListItem {
+  narration: string;
+  date: string;
+  amount: number;
+  icon: React.ElementType | null;
+  bgColor: string;
 }

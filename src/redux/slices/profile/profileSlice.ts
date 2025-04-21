@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getProfile, updateProfile } from "./profileThunks";
-import { initialState } from "../../../constants";
+import { initialProfileState } from "../../../constants";
 import { IProfile } from "../../../interfaces";
 
 
 const profileSlice = createSlice({
   name: "profile",
-  initialState: initialState,
+  initialState: initialProfileState,
   reducers: {
     clearProfile: (state) => {
       state.data = null;
