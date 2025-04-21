@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import SEARCH_SVG from '../../assets/icons/search';
+import React, { useState } from "react";
+import SEARCH_SVG from "../../assets/icons/search";
+import { ISearchInput } from "../../interfaces";
 
-interface SearchInputProps {
-  placeholder?: string;
-  onSearch: (query: string) => void;
-}
-
-const SearchInput: React.FC<SearchInputProps> = ({ placeholder = "Search...", onSearch }) => {
+const SearchInput: React.FC<ISearchInput> = ({ placeholder = "Search...", onSearch }) => {
   const [query, setQuery] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

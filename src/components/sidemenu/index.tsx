@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import TASK_SVG from '../../assets/icons/task';
-import HAMBURGER_SVG from '../../assets/icons/hamburger';
-import { MenuProps, menus } from './menus';
-import { MenuItem } from './menuItem';
-import CLOSE_SVG from '../../assets/icons/close';
+import React, { useState } from "react";
+import { menus } from "./menus";
+import { MenuItem } from "./menuItem";
+import { IMenu } from "../../interfaces";
+import CLOSE_SVG from "../../assets/icons/close";
+import TASK_SVG from "../../assets/icons/task";
+import HAMBURGER_SVG from "../../assets/icons/hamburger";
 
 const SideMenu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ const SideMenu: React.FC = () => {
         </div>
 
         <div className="items-center space-y-4 flex-grow w-full overflow-y-auto">
-          {menus.map((menu: MenuProps) => (
+          {menus.map((menu: IMenu) => (
             <MenuItem key={menu.route} label={menu.label} route={menu.route} icon={menu.icon} closeMenu={setIsMenuOpen} />
           ))}
         </div>
@@ -31,7 +32,7 @@ const SideMenu: React.FC = () => {
 
       <button
         onClick={toggleMenu}
-        className="lg:hidden fixed top-10 left-4 z-50 p-2"
+        className="lg:hidden fixed top-8 left-4 z-50 p-2"
       >
         {isMenuOpen ? <CLOSE_SVG /> : <HAMBURGER_SVG />}
       </button>
@@ -40,7 +41,7 @@ const SideMenu: React.FC = () => {
         ${isMenuOpen ? 'w-full h-auto bg-white shadow-lg fixed top-24 left-4 z-40 opacity-100 visible' : 'lg:w-[250px] w-0 opacity-0 invisible'}`}
       >
         <div className="space-y-2 flex-grow w-full overflow-y-auto">
-          {menus.map((menu: MenuProps) => (
+          {menus.map((menu: IMenu) => (
             <MenuItem key={menu.route} label={menu.label} route={menu.route} icon={menu.icon} closeMenu={setIsMenuOpen} />
           ))}
         </div>

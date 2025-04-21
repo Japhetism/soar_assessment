@@ -1,13 +1,7 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
+import { IMenuItem } from "../../interfaces";
 
-interface MenuItemProps {
-  label: string;
-  route: string;
-  closeMenu: (isMenuOpen: boolean) => void;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-}
-
-export const MenuItem: React.FC<MenuItemProps> = ({
+export const MenuItem: React.FC<IMenuItem> = ({
   label,
   route,
   closeMenu,

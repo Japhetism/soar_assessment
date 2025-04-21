@@ -1,19 +1,16 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import SideMenu from "../../components/sidemenu";
 import Header from "../header";
+import { ILayout } from "../../interfaces";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<ILayout> = ({ children }) => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen overflow-x-hidden">
       <div className="flex h-full">
         <SideMenu />
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 overflow-hidden">
           <Header />
-          <main className="flex-1 lg:p-8 p-4 overflow-auto bg-slate-100">
+          <main className="flex-1 lg:p-8 p-2 overflow-y-auto bg-slate-100">
             {children}
           </main>
         </div>

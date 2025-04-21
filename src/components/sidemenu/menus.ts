@@ -7,14 +7,9 @@ import LOAN_SVG from "../../assets/icons/loan";
 import SERVICE_SVG from "../../assets/icons/service";
 import PRIVILEGE_SVG from "../../assets/icons/privilege";
 import SETTINGS_SVG from "../../assets/icons/settings";
+import { IMenu } from "../../interfaces";
 
-export interface MenuProps {
-  label: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  route: string;
-}
-
-export const menus: MenuProps[] = [
+export const menus: IMenu[] = [
   {
     label: "Dashboard",
     icon: HOME_SVG,

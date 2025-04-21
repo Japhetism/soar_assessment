@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header className="bg-[#FFF] text-white border-b-[1px]">
       <div className="flex justify-between items-center p-4 px-10">
-        <div className="w-full md:w-auto flex justify-center md:justify-start lg:ml-[0px] ml-[40px]">
+        <div className="w-full md:w-auto flex justify-center md:justify-start lg:ml-[0px] ml-[20px]">
           <span className="text-[#343C6A] lg:text-[28px] text-[20px] font-semibold font-inter">{getPathname()}</span>
         </div>
         

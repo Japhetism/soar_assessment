@@ -1,12 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
+import Settings from "./pages/settings";
 
 const App: React.FC = () => {
   return (
     <Router>
       <Layout>
-        <div>Children here....</div>
+        <Routes>
+          <Route
+            index
+            path="/setting"
+            element={<Settings />}
+          />
+        </Routes>
       </Layout>
     </Router>
   );
