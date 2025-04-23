@@ -4,7 +4,7 @@ import { profileSchema } from "../schemas";
 export type IProfile = z.infer<typeof profileSchema>;
 
 export interface IAsyncData<T> {
-  data: T;
+  data: T | null;
   loading: boolean;
   error: string | null;
 }
@@ -15,6 +15,7 @@ export interface IDashboardState {
   cards: IAsyncData<ICard[]>;
   recentTransactions: IAsyncData<IRecentTransactions[]>;
   weeklyActivites: IAsyncData<IDailyActivity[]>;
+  expenseStatistics: IAsyncData<IExpenseStatistics>;
 }
 
 export interface INotification {
@@ -108,7 +109,9 @@ export interface IDailyActivity {
 export interface IDataset {
   label: string;
   data: Array<number>;
-  backgroundColor: string;
+  backgroundColor: string | Array<string>;
+  borderColor?: string | Array<string>;
+  borderWidth?: number;
 }
 
 export interface IBarChart {
@@ -116,18 +119,14 @@ export interface IBarChart {
   datasets: IDataset[];
 }
   
-// export interface IWeeklyActivities {
-//   days: DailyActivity[];
-// }
-  
-// export interface IWeeklyActivities {
-//   days: WeekData;
-// }
+export interface IExpenseStatistics {
+  entertainment: number;
+  billExpense: number;
+  investment: number;
+  others: number;
+}
 
-// export interface IRecentTransactions {
-//   icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | null;
-//   narration: string;
-//   amount: number;
-//   date: string;
-//   bgColor: string;
-// }
+export interface IPieChart {
+  labels: Array<string>;
+  dataset: IDataset[]
+}

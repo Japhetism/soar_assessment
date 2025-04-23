@@ -43,27 +43,29 @@ const WeeklyActivity = () => {
   return (
     <>
       <HeaderText text="Weekly Activity" />
-      <div className="bg-[#fff] rounded-lg p-4">
-        <BarChart
-          labels={weeklydata?.days}
-          datasets={[
-            {
-              label: "Withdrawal",
-              data: weeklydata?.withdrawals,
-              backgroundColor: "#232323"
-            },
-            {
-              label: "",
-              data: [0, 0, 0, 0, 0, 0, 0],
-              backgroundColor: "#FFF"
-            },
-            {
-              label: "Deposit",
-              data: weeklydata?.deposits,
-              backgroundColor: "#396AFF"
-            }
-          ]}
-        />
+      <div className="bg-[#fff] rounded-lg p-4 w-full lg:h-[450px] overflow-x-auto scrollbar-hide-desktop">
+        <div className="min-w-[600px]">
+          <BarChart
+            labels={weeklydata?.days}
+            datasets={[
+              {
+                label: "Withdrawal",
+                data: weeklydata?.withdrawals,
+                backgroundColor: "#232323"
+              },
+              {
+                label: "",
+                data: [0, 0, 0, 0, 0, 0, 0],
+                backgroundColor: "#FFF"
+              },
+              {
+                label: "Deposit",
+                data: weeklydata?.deposits,
+                backgroundColor: "#396AFF"
+              }
+            ]}
+          />
+        </div>
       </div>    
     </>
   )

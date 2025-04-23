@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ICard, IDailyActivity, IRecentTransactions } from "../../../interfaces";
-import { recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
+import { ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
+import { expenseStatistics, recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
 import { sortActivitiesByToday } from "../../../utils/helper";
 
 export const getUserCards = createAsyncThunk<ICard[]>(
@@ -13,7 +13,7 @@ export const getUserCards = createAsyncThunk<ICard[]>(
 );
 
 export const getRecentTransactions = createAsyncThunk<IRecentTransactions[]>(
-  "user/transactions/recent",
+  "transactions/recent",
   async () => {
     const recentTransactionData = await recentTransactions;
     const response = {data: recentTransactionData}
@@ -22,10 +22,19 @@ export const getRecentTransactions = createAsyncThunk<IRecentTransactions[]>(
 );
 
 export const getWeeklyActivities = createAsyncThunk<IDailyActivity[]>(
-  "user/activities?type=weekly",
+  "activities?type=weekly",
   async () => {
     const weeklyActivityData = await weeklyActivites;
     const response = {data: sortActivitiesByToday(weeklyActivityData)}
+    return response.data;
+  }
+);
+
+export const getExpenseStatistics = createAsyncThunk<IExpenseStatistics>(
+  "expense/statistics",
+  async () => {
+    const expenseStatisticData = await expenseStatistics;
+    const response = {data: expenseStatisticData}
     return response.data;
   }
 );

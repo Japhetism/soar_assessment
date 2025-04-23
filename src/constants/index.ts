@@ -34,5 +34,10 @@ export const initialDashboardState: IDashboardState = {
     data: [],
     loading: false,
     error: null,
+  },
+  expenseStatistics: {
+    data: null,
+    loading: false,
+    error: null,
   }
 };

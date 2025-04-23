@@ -1,3 +1,4 @@
+import ExpenseStatistics from "./components/expenseStatistics";
 import HeaderText from "./components/headerText";
 import RecentTransactions from "./components/recentTransactions";
 import UserCards from "./components/userCards";
@@ -26,10 +27,7 @@ const Dashboard: React.FC = () => {
           <WeeklyActivity />
         </div>
         <div className="w-full lg:w-4/12">
-          <HeaderText text="Expense Statistics" />
-          <div className="bg-[#fff] h-[250px] rounded-lg p-4">
-            D
-          </div>
+          <ExpenseStatistics />
         </div>
       </div>
 

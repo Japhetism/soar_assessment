@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getRecentTransactions, getUserCards, getWeeklyActivities } from "./dashboardThunks";
+import { getExpenseStatistics, getRecentTransactions, getUserCards, getWeeklyActivities } from "./dashboardThunks";
 import { initialDashboardState } from "../../../constants";
-import { ICard, IDailyActivity, IRecentTransactions } from "../../../interfaces";
+import { ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
 
 
 const dashboardSlice = createSlice({
@@ -45,6 +45,18 @@ const dashboardSlice = createSlice({
       .addCase(getWeeklyActivities.rejected, (state, action) => {
         state.weeklyActivites.loading = false;
         state.weeklyActivites.error = action.error.message ?? "Failed to fetch weekly activities";
+      })
+      .addCase(getExpenseStatistics.pending, (state) => {
+        state.expenseStatistics.loading = true;
+        state.expenseStatistics.error = null;
+      })
+      .addCase(getExpenseStatistics.fulfilled, (state, action: PayloadAction<IExpenseStatistics>) => {
+        state.expenseStatistics.loading = false;
+        state.expenseStatistics.data = action.payload;
+      })
+      .addCase(getExpenseStatistics.rejected, (state, action) => {
+        state.expenseStatistics.loading = false;
+        state.expenseStatistics.error = action.error.message ?? "Failed to fetch expense statistics";
       })
   },
 });
