@@ -29,5 +29,10 @@ export const initialDashboardState: IDashboardState = {
     data: [],
     loading: false,
     error: null,
+  },
+  weeklyActivites: {
+    data: [],
+    loading: false,
+    error: null,
   }
 };

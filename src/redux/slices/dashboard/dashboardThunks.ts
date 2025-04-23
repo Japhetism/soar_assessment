@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ICard, IRecentTransactions } from "../../../interfaces";
-import { recentTransactions, userCards } from "../../../fixtures";
+import { ICard, IDailyActivity, IRecentTransactions } from "../../../interfaces";
+import { recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
+import { sortActivitiesByToday } from "../../../utils/helper";
 
 export const getUserCards = createAsyncThunk<ICard[]>(
   "user/cards",
@@ -16,6 +17,15 @@ export const getRecentTransactions = createAsyncThunk<IRecentTransactions[]>(
   async () => {
     const recentTransactionData = await recentTransactions;
     const response = {data: recentTransactionData}
+    return response.data;
+  }
+);
+
+export const getWeeklyActivities = createAsyncThunk<IDailyActivity[]>(
+  "user/activities?type=weekly",
+  async () => {
+    const weeklyActivityData = await weeklyActivites;
+    const response = {data: sortActivitiesByToday(weeklyActivityData)}
     return response.data;
   }
 );

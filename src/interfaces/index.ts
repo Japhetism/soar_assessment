@@ -14,6 +14,7 @@ export interface IProfileState extends IAsyncData<IProfile | null> {}
 export interface IDashboardState {
   cards: IAsyncData<ICard[]>;
   recentTransactions: IAsyncData<IRecentTransactions[]>;
+  weeklyActivites: IAsyncData<IDailyActivity[]>;
 }
 
 export interface INotification {
@@ -97,6 +98,31 @@ export interface ICardListItem {
   icon: React.ElementType | null;
   bgColor: string;
 }
+
+export interface IDailyActivity {
+  day: string;
+  deposit: number;
+  withdrawal: number;
+}
+
+export interface IDataset {
+  label: string;
+  data: Array<number>;
+  backgroundColor: string;
+}
+
+export interface IBarChart {
+  labels: Array<string>;
+  datasets: IDataset[];
+}
+  
+// export interface IWeeklyActivities {
+//   days: DailyActivity[];
+// }
+  
+// export interface IWeeklyActivities {
+//   days: WeekData;
+// }
 
 // export interface IRecentTransactions {
 //   icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | null;

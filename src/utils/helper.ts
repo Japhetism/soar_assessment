@@ -1,6 +1,7 @@
 import BUSINESS_SVG from "../assets/icons/business";
 import MONEY_SVG from "../assets/icons/money";
 import PAYPAL_SVG from "../assets/icons/paypal";
+import { IDailyActivity } from "../interfaces";
 
 export const formatDate = (date: string | Date): string => {
   const dateObject = new Date(date);
@@ -41,4 +42,24 @@ export const getRecentTransactionBgColor = (type: string): string => {
     default:
       return ""
   }
+}
+
+export const extractActivityData = (activities: IDailyActivity[]) => {
+  return {
+    days: activities.map(a => a.day),
+    deposits: activities.map(a => a.deposit),
+    withdrawals: activities.map(a => a.withdrawal),
+  };
+}
+
+export const sortActivitiesByToday = (activities: IDailyActivity[]): IDailyActivity[] => {
+  const dayOrder = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const todayIndex = new Date().getDay();
+
+  const activityMap = new Map(activities.map(activity => [activity.day, activity]));
+
+  return Array.from({ length: 7 }, (_, i) => {
+    const day = dayOrder[(todayIndex + i) % 7];
+    return activityMap.get(day)!;
+  });
 }

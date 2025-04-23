@@ -42,7 +42,7 @@ const UserCards = () => {
         <div className="w-[320px] lg:w-full shrink-0 lg:shrink" key={`usercard-${index}`}>
           <HeaderText
             fontSize={card?.type?.toLowerCase() === "premium" ? 22 : 17}
-            bottom={card?.type?.toLowerCase() === "premium" ? 5 : 7}
+            bottom={card?.type?.toLowerCase() === "premium" ? 5 : 30}
             text={card?.type?.toLowerCase() === "premium" ? "My Card" : "See All"}
             classes={card?.type?.toLowerCase() !== "premium" ? "flex lg:justify-end" : ""}
           />
