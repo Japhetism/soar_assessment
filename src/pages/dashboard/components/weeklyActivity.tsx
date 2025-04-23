@@ -44,7 +44,7 @@ const WeeklyActivity = () => {
         {errorMessage && <Notification message={errorMessage} isError />}
         <div className="min-w-[600px]">
           <BarChart
-            labels={weeklydata?.days}
+            labels={weeklydata?.days?.map((d: string) => d.slice(0, 3)) || []}
             datasets={[
               {
                 label: "Withdrawal",
