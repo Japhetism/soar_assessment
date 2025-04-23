@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import BarChart from "../../../components/charts/barChart";
 import Loader from "../../../components/loader";
+import Notification from "../../../components/Notification";
 import HeaderText from "./headerText"
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { IDailyActivity } from "../../../interfaces";
@@ -30,20 +31,17 @@ const WeeklyActivity = () => {
     }
   }, [error]);
   
-  console.log("weekly activities  are ", data);
-
   if (loading) {
     return <Loader />
   }
 
   const weeklydata = extractActivityData(weeklyActivities);
 
-  console.log("weekly data ", weeklydata);
-
   return (
     <>
       <HeaderText text="Weekly Activity" />
       <div className="bg-[#fff] rounded-lg p-4 w-full lg:h-[450px] overflow-x-auto scrollbar-hide-desktop">
+        {errorMessage && <Notification message={errorMessage} isError />}
         <div className="min-w-[600px]">
           <BarChart
             labels={weeklydata?.days}

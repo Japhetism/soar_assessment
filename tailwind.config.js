@@ -9,11 +9,11 @@ module.exports = {
       addUtilities({
         '@media (min-width: 768px)': {
           '.scrollbar-hide-desktop': {
-            'scrollbar-width': 'none',     /* Firefox */
-            '-ms-overflow-style': 'none',  /* IE and Edge */
+            'scrollbar-width': 'none',
+            '-ms-overflow-style': 'none',
           },
           '.scrollbar-hide-desktop::-webkit-scrollbar': {
-            display: 'none',               /* Chrome, Safari, Opera */
+            display: 'none',
           },
         },
       });

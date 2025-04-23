@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import PieChart from "../../../components/charts/pieChart";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import Loader from "../../../components/loader";
+import Notification from "../../../components/Notification";
 import HeaderText from "./headerText";
 import { IExpenseStatistics } from "../../../interfaces";
 import { getExpenseStatistics } from "../../../redux/slices/dashboard/dashboardThunks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 
 const ExpenseStatistics = () => {
   const dispatch = useAppDispatch();
@@ -28,12 +30,15 @@ const ExpenseStatistics = () => {
     }
   }, [error]);
   
-  console.log("expense statistics ", data);
-  
+  if (loading) {
+    return <Loader />
+  }
+
   return (
     <>
       <HeaderText text="Expense Statistics" />
       <div className="bg-[#fff] rounded-lg p-4 w-full lg:h-[450px] flex justify-center items-center">
+        {errorMessage && <Notification message={errorMessage} isError />}
         <div className="w-5/6">
           <PieChart
             labels={expenseStatistics ? Object.keys(expenseStatistics) : []}

@@ -31,8 +31,6 @@ const RecentTransactions = () => {
     }
   }, [error]);
   
-  console.log("recent transactions are ", data);
-
   if (loading) {
     return <Loader />
   }
