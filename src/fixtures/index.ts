@@ -1,4 +1,7 @@
-import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IProfile, IRecentTransactions } from "../interfaces";
+import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IProfile, IQuickTransfer, IRecentTransactions } from "../interfaces";
+import UserImage2 from "../assets/images/user2.png";
+import UserImage1 from "../assets/images/user1.png";
+import UserImage3 from "../assets/images/user3.png";
 
 export const profileDataValues: IProfile = {
   name: "James Doe",
@@ -110,3 +113,24 @@ export const balanceHistory: IBalanceHistory = {
   november: 200,
   december: 580
 }
+
+export const quickTransfer: IQuickTransfer[] = [
+  {
+    id: "1",
+    name: "Livia Bator",
+    position: "CEO",
+    profilePhoto: UserImage2
+  },
+  {
+    id: "2",
+    name: "Randy Press",
+    position: "Director",
+    profilePhoto: UserImage1
+  },
+  {
+    id: "3",
+    name: "Workman",
+    position: "Designer",
+    profilePhoto: UserImage3
+  }
+]

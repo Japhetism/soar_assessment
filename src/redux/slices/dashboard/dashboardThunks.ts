@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
-import { balanceHistory, expenseStatistics, recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
+import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IQuickTransfer, IRecentTransactions } from "../../../interfaces";
+import { balanceHistory, expenseStatistics, quickTransfer, recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
 import { getBalanceUpToCurrentMonth, sortActivitiesByToday } from "../../../utils/helper";
 
 export const getUserCards = createAsyncThunk<ICard[]>(
@@ -44,6 +44,15 @@ export const getBalanceHistory = createAsyncThunk<{ [key in keyof IBalanceHistor
   async () => {
     const balanceHistoryData = await getBalanceUpToCurrentMonth(balanceHistory);
     const response = {data: balanceHistoryData}
+    return response.data;
+  }
+);
+
+export const getQuickTransfer = createAsyncThunk<IQuickTransfer[]>(
+  "transactions/quick",
+  async () => {
+    const quickTransferData = await quickTransfer;
+    const response = {data: quickTransferData}
     return response.data;
   }
 );

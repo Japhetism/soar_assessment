@@ -1,6 +1,7 @@
 import BalanceHistory from "./components/balanceHistory";
 import ExpenseStatistics from "./components/expenseStatistics";
 import HeaderText from "./components/headerText";
+import QuickTransfer from "./components/quickTransfer";
 import RecentTransactions from "./components/recentTransactions";
 import UserCards from "./components/userCards";
 import WeeklyActivity from "./components/weeklyActivity";
@@ -34,10 +35,7 @@ const Dashboard: React.FC = () => {
 
       <div className="flex flex-col lg:flex-row items-start justify-between gap-10 mt-10">
         <div className="w-full lg:w-5/12">
-          <HeaderText text="Quick Trasfer" />
-          <div className="bg-[#fff] lg:h-[400px] rounded-lg p-4">
-            E
-          </div>
+          <QuickTransfer />
         </div>
         <div className="w-full lg:w-7/12">
           <BalanceHistory />

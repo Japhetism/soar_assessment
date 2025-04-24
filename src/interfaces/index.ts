@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { profileSchema } from "../schemas";
+import { profileSchema, sendMoneySchema } from "../schemas";
 import { ChartData } from "chart.js";
 
 export type IProfile = z.infer<typeof profileSchema>;
@@ -18,6 +18,7 @@ export interface IDashboardState {
   weeklyActivites: IAsyncData<IDailyActivity[]>;
   expenseStatistics: IAsyncData<IExpenseStatistics>;
   balanceHistory: IAsyncData<{ [key in keyof IBalanceHistory]?: number }>;
+  quickTransfer: IAsyncData<IQuickTransfer[]>;
 }
 
 export interface INotification {
@@ -152,4 +153,19 @@ export interface ILineChart {
   data: ChartData<'line'>;
   title?: string;
   useGradientFill?: boolean;
+}
+
+export interface IQuickTransfer {
+  id: string;
+  name: string;
+  position: string;
+  profilePhoto: string;
+}
+
+export type IQuickTransferFormData = z.infer<typeof sendMoneySchema>;
+
+export interface ISendInput {
+  label: string;
+  onChange: (e: number) => void;
+  handleSend: () => void;
 }

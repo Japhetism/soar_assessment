@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getBalanceHistory, getExpenseStatistics, getRecentTransactions, getUserCards, getWeeklyActivities } from "./dashboardThunks";
+import { getBalanceHistory, getExpenseStatistics, getQuickTransfer, getRecentTransactions, getUserCards, getWeeklyActivities } from "./dashboardThunks";
 import { initialDashboardState } from "../../../constants";
-import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
+import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IQuickTransfer, IRecentTransactions } from "../../../interfaces";
 
 
 const dashboardSlice = createSlice({
@@ -69,6 +69,18 @@ const dashboardSlice = createSlice({
       .addCase(getBalanceHistory.rejected, (state, action) => {
         state.balanceHistory.loading = false;
         state.balanceHistory.error = action.error.message ?? "Failed to fetch balance history";
+      })
+      .addCase(getQuickTransfer.pending, (state) => {
+        state.quickTransfer.loading = true;
+        state.quickTransfer.error = null;
+      })
+      .addCase(getQuickTransfer.fulfilled, (state, action: PayloadAction<IQuickTransfer[]>) => {
+        state.quickTransfer.loading = false;
+        state.quickTransfer.data = action.payload;
+      })
+      .addCase(getQuickTransfer.rejected, (state, action) => {
+        state.quickTransfer.loading = false;
+        state.quickTransfer.error = action.error.message ?? "Failed to fetch quick transfer";
       })
   },
 });

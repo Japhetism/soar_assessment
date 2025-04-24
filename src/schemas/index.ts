@@ -38,3 +38,12 @@ export const profileSchema = z.object({
     .string({ required_error: "Country is required" })
     .refine(val => val.trim() !== "", { message: "Country is required" }),
 });
+
+export const sendMoneySchema = z.object({
+  userId: z
+    .string({ required_error: "Select a user to send money to" })
+    .refine(val => val.trim() !== "", { message: "Select a user to send money to" }),
+  amount: z
+    .number({ required_error: "Amount is required "})
+    .gt(0, { message: "Amount must be greater than 0" })
+}) 

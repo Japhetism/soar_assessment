@@ -1,4 +1,4 @@
-import { IDashboardState, IProfile, IProfileState } from "../interfaces";
+import { IDashboardState, IProfile, IProfileState, IQuickTransferFormData } from "../interfaces";
 
 export const defaultProfileValues: IProfile = {
   name: "",
@@ -44,5 +44,15 @@ export const initialDashboardState: IDashboardState = {
     data: null,
     loading: false,
     error: null,
+  },
+  quickTransfer: {
+    data: [],
+    loading: false,
+    error: null,
   }
 };
+
+export const defaultQuickTransferFormData: IQuickTransferFormData = {
+  userId: "",
+  amount: 0
+}
