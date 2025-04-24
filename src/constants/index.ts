@@ -39,5 +39,10 @@ export const initialDashboardState: IDashboardState = {
     data: null,
     loading: false,
     error: null,
+  },
+  balanceHistory: {
+    data: null,
+    loading: false,
+    error: null,
   }
 };

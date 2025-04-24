@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { profileSchema } from "../schemas";
+import { ChartData } from "chart.js";
 
 export type IProfile = z.infer<typeof profileSchema>;
 
@@ -16,6 +17,7 @@ export interface IDashboardState {
   recentTransactions: IAsyncData<IRecentTransactions[]>;
   weeklyActivites: IAsyncData<IDailyActivity[]>;
   expenseStatistics: IAsyncData<IExpenseStatistics>;
+  balanceHistory: IAsyncData<{ [key in keyof IBalanceHistory]?: number }>;
 }
 
 export interface INotification {
@@ -129,4 +131,25 @@ export interface IExpenseStatistics {
 export interface IPieChart {
   labels: Array<string>;
   dataset: IDataset[]
+}
+
+export interface IBalanceHistory {
+  january: number;
+  february: number;
+  march: number;
+  april: number;
+  may: number;
+  june: number;
+  july: number;
+  august: number;
+  september: number;
+  october: number;
+  november: number;
+  december: number;
+};
+
+export interface ILineChart {
+  data: ChartData<'line'>;
+  title?: string;
+  useGradientFill?: boolean;
 }

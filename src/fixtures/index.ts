@@ -1,4 +1,4 @@
-import { ICard, IDailyActivity, IExpenseStatistics, IProfile, IRecentTransactions } from "../interfaces";
+import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IProfile, IRecentTransactions } from "../interfaces";
 
 export const profileDataValues: IProfile = {
   name: "James Doe",
@@ -94,4 +94,19 @@ export const expenseStatistics: IExpenseStatistics = {
   billExpense: 15,
   investment: 20,
   others: 35
+}
+
+export const balanceHistory: IBalanceHistory = {
+  january: 200,
+  february: 500,
+  march: 300,
+  april: 400,
+  may: 100,
+  june: 500,
+  july: 100,
+  august: 250,
+  september: 430,
+  october: 800,
+  november: 200,
+  december: 580
 }

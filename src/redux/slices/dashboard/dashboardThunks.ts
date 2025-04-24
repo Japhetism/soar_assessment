@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
-import { expenseStatistics, recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
-import { sortActivitiesByToday } from "../../../utils/helper";
+import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
+import { balanceHistory, expenseStatistics, recentTransactions, userCards, weeklyActivites } from "../../../fixtures";
+import { getBalanceUpToCurrentMonth, sortActivitiesByToday } from "../../../utils/helper";
 
 export const getUserCards = createAsyncThunk<ICard[]>(
   "user/cards",
@@ -35,6 +35,15 @@ export const getExpenseStatistics = createAsyncThunk<IExpenseStatistics>(
   async () => {
     const expenseStatisticData = await expenseStatistics;
     const response = {data: expenseStatisticData}
+    return response.data;
+  }
+);
+
+export const getBalanceHistory = createAsyncThunk<{ [key in keyof IBalanceHistory]?: number }>(
+  "balance/history",
+  async () => {
+    const balanceHistoryData = await getBalanceUpToCurrentMonth(balanceHistory);
+    const response = {data: balanceHistoryData}
     return response.data;
   }
 );

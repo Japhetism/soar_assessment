@@ -1,7 +1,7 @@
 import BUSINESS_SVG from "../assets/icons/business";
 import MONEY_SVG from "../assets/icons/money";
 import PAYPAL_SVG from "../assets/icons/paypal";
-import { IDailyActivity } from "../interfaces";
+import { IBalanceHistory, IDailyActivity } from "../interfaces";
 
 export const formatDate = (date: string | Date): string => {
   const dateObject = new Date(date);
@@ -63,3 +63,20 @@ export const sortActivitiesByToday = (activities: IDailyActivity[]): IDailyActiv
     return activityMap.get(day)!;
   });
 }
+
+export const getBalanceUpToCurrentMonth = (balanceHistory: IBalanceHistory): { [key in keyof IBalanceHistory]?: number } => {
+  const currentMonth = new Date().getMonth();
+  const months: (keyof IBalanceHistory)[] = [
+    'january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december'
+  ];
+
+  const result: { [key in keyof IBalanceHistory]?: number } = {};
+
+  for (let i = 0; i <= currentMonth; i++) {
+    result[months[i]] = balanceHistory[months[i]];
+  }
+
+  return result;
+}
+

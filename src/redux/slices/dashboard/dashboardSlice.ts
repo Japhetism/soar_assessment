@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getExpenseStatistics, getRecentTransactions, getUserCards, getWeeklyActivities } from "./dashboardThunks";
+import { getBalanceHistory, getExpenseStatistics, getRecentTransactions, getUserCards, getWeeklyActivities } from "./dashboardThunks";
 import { initialDashboardState } from "../../../constants";
-import { ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
+import { IBalanceHistory, ICard, IDailyActivity, IExpenseStatistics, IRecentTransactions } from "../../../interfaces";
 
 
 const dashboardSlice = createSlice({
@@ -57,6 +57,18 @@ const dashboardSlice = createSlice({
       .addCase(getExpenseStatistics.rejected, (state, action) => {
         state.expenseStatistics.loading = false;
         state.expenseStatistics.error = action.error.message ?? "Failed to fetch expense statistics";
+      })
+      .addCase(getBalanceHistory.pending, (state) => {
+        state.balanceHistory.loading = true;
+        state.balanceHistory.error = null;
+      })
+      .addCase(getBalanceHistory.fulfilled, (state, action: PayloadAction<{ [key in keyof IBalanceHistory]?: number }>) => {
+        state.balanceHistory.loading = false;
+        state.balanceHistory.data = action.payload;
+      })
+      .addCase(getBalanceHistory.rejected, (state, action) => {
+        state.balanceHistory.loading = false;
+        state.balanceHistory.error = action.error.message ?? "Failed to fetch balance history";
       })
   },
 });
