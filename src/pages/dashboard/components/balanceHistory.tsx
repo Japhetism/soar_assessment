@@ -6,7 +6,6 @@ import Notification from "../../../components/Notification";
 import { IBalanceHistory } from "../../../interfaces";
 import { getBalanceHistory } from "../../../redux/slices/dashboard/dashboardThunks";
 import LineChart from "../../../components/charts/lineChart";
-import { ChartData } from "chart.js";
 
 const BalanceHistory = () => {
   const dispatch = useAppDispatch();

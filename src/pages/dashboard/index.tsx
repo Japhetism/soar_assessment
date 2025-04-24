@@ -1,6 +1,5 @@
 import BalanceHistory from "./components/balanceHistory";
 import ExpenseStatistics from "./components/expenseStatistics";
-import HeaderText from "./components/headerText";
 import QuickTransfer from "./components/quickTransfer";
 import RecentTransactions from "./components/recentTransactions";
 import UserCards from "./components/userCards";
