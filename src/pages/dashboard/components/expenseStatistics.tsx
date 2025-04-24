@@ -41,7 +41,15 @@ const ExpenseStatistics = () => {
         {errorMessage && <Notification message={errorMessage} isError />}
         <div className="w-5/6">
           <PieChart
-            labels={expenseStatistics ? Object.keys(expenseStatistics) : []}
+            labels={
+              expenseStatistics
+                ? Object.keys(expenseStatistics).map(key =>
+                    key
+                      .replace(/([A-Z])/g, ' $1')
+                      .replace(/^./, str => str.toUpperCase())
+                  )
+                : []
+            }
             dataset={[
               {
                 label: 'Expense Statistics',
