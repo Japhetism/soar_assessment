@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { getUserCards } from "../../../redux/slices/dashboard/dashboardThunks";
 import HeaderText from "./headerText";
@@ -9,6 +10,8 @@ import Card from "../../../components/card";
 
 const UserCards = () => {
   
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const { data, loading, error } = useAppSelector((state) => state.dashboard.cards);
 
@@ -45,6 +48,7 @@ const UserCards = () => {
             bottom={card?.type?.toLowerCase() === "premium" ? 5 : 30}
             text={card?.type?.toLowerCase() === "premium" ? "My Card" : "See All"}
             classes={card?.type?.toLowerCase() !== "premium" ? "flex lg:justify-end" : ""}
+            onClick={card?.type?.toLowerCase() === "premium" ? undefined : () => navigate("/credit-cards")}
           />
           <div className="rounded-lg">
             <Card

@@ -1,16 +1,11 @@
-
-interface IHeaderText {
-  text: string;
-  fontSize?: string | number;
-  bottom?: string | number;
-  classes?: string;
-}
+import { IHeaderText } from "../../../interfaces";
 
 const HeaderText = ({
   text,
   fontSize = 22,
   bottom = 5,
   classes,
+  onClick,
 }: IHeaderText) => {
 
   const style = {
@@ -20,12 +15,13 @@ const HeaderText = ({
 
   return (
     <div className={`mb-${bottom}`}>
-      <span
+      <button
         className={`text-[#343C6A] font-inter font-semibold ${classes}`}
         style={style}
+        onClick={() => onClick && onClick()}
       >
         {text}
-      </span>
+      </button>
     </div>
   )
 }

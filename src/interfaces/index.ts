@@ -169,3 +169,11 @@ export interface ISendInput {
   onChange: (e: number) => void;
   handleSend: () => void;
 }
+
+export interface IHeaderText {
+  text: string;
+  fontSize?: string | number;
+  bottom?: string | number;
+  classes?: string;
+  onClick?: () => void;
+}
